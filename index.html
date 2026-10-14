@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Submit your preprint | Scifiniti Publishing</title>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#003462;--red:#FC3441;--ink:#1F2A37;--muted:#4A5563;--line:#DCE4EE;--field:#7B90A8;--tint:#EEF3F9;--bg:#F5F8FC;--err:#B3261E;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+  .wrap{max-width:640px;margin:0 auto;padding:16px}
+  .mast{display:flex;gap:14px;align-items:center;padding:14px;background:var(--navy);color:#fff;border-bottom:4px solid var(--red);border-radius:10px 10px 0 0}
+  .coverbox{flex:none;width:80px;aspect-ratio:1240/1754;border-radius:4px;background:#0E4A80;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .cover{display:block;width:100%;height:100%;object-fit:cover}
+  .logo{display:block;width:96px;height:auto;margin:0 0 10px}
+  .kick{margin:0;font-size:13px;color:#C9D6E8}
+  .jn{margin:2px 0 0;font-size:19px;line-height:1.25;font-weight:bold}
+  .card{padding:24px 16px;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px}
+  h1{margin:0;font:600 26px/1.2 var(--serif);color:var(--navy);text-wrap:balance}
+  h1:focus{outline:none}
+  .who{margin:8px 0 0;color:var(--muted)}
+  .ms{margin:16px 0;padding:14px 16px;background:var(--tint);border-radius:8px}
+  .label{margin:0 0 4px;font-size:13px;color:var(--muted)}
+  .title{margin:0;font:500 19px/1.35 var(--serif);color:var(--ink);overflow-wrap:anywhere}
+  .authors{margin:8px 0 0;font-size:14px;color:var(--muted);overflow-wrap:anywhere}
+  .meta{margin:6px 0 0;font-size:13px;color:var(--muted)}
+  .plinks{margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 20px}
+  .plinks a,.note a,.links a,.small a{color:var(--navy);font-weight:bold}
+  .link{padding:0;border:0;background:none;color:var(--navy);font:inherit;font-weight:bold;text-decoration:underline;cursor:pointer}
+  details{margin:0 0 16px;border:1px solid var(--line);border-radius:8px;background:#fff}
+  summary{min-height:44px;padding:11px 14px;font-weight:bold;color:var(--navy);cursor:pointer}
+  details p{margin:0;padding:0 14px 14px;white-space:pre-line}
+  .tip{margin:0 0 20px;padding:12px 16px;border-left:4px solid var(--navy);background:var(--tint);border-radius:0 8px 8px 0}
+  fieldset{margin:0 0 18px;padding:0;border:0;min-width:0}
+  legend{margin:0 0 8px;padding:0;font-weight:bold}
+  .soft{font-weight:normal;color:var(--muted)}
+  .opt{display:flex;align-items:flex-start;gap:12px;min-height:48px;margin:0 0 8px;padding:12px 14px;border:1px solid var(--field);border-radius:8px;
+    background:#fff;color:var(--ink);font-size:15px;cursor:pointer}
+  .opt input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--navy)}
+  .opt:has(input:checked){padding:11px 13px;border:2px solid var(--navy);background:var(--tint)}
+  .opt:has(input:focus-visible),.seg label:has(input:focus-visible){outline:3px solid var(--red);outline-offset:2px}
+  .opt input:focus-visible,.seg input:focus-visible{outline:none}
+  .opt[aria-invalid=true]{border:2px solid var(--err)}
+  .seg{display:flex;flex-wrap:wrap;gap:8px}
+  .seg label{position:relative;display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--field);border-radius:999px;background:#fff;font-size:14px;cursor:pointer}
+  .seg input{position:absolute;opacity:0;width:1px;height:1px}
+  .seg label:has(input:checked){border:2px solid var(--navy);padding:7px 13px;background:var(--tint);color:var(--navy);font-weight:bold}
+  .disclose{display:flex;align-items:center;gap:8px;min-height:44px;margin:4px 0 0;padding:0;border:0;background:none;color:var(--navy);font:bold 15px var(--sans);cursor:pointer}
+  .disclose::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:2px solid var(--navy);border-radius:50%;font-size:15px;line-height:1}
+  .disclose[aria-expanded=true]::before{content:"\2212"}
+  .field{margin:10px 0 0}
+  .field label{display:block;margin:0 0 6px;font-weight:bold}
+  .field input,.field textarea{display:block;width:100%;padding:12px;border:1px solid var(--field);border-radius:8px;background:#fff;color:var(--ink);font:16px/1.5 var(--sans)}
+  .field textarea{min-height:96px;resize:vertical}
+  .field [aria-invalid=true]{border:2px solid var(--err)}
+  .hint{margin:6px 0 0;font-size:13px;color:var(--muted)}
+  .go{display:block;width:100%;min-height:52px;margin:24px 0 0;padding:14px 20px;border:0;border-bottom:4px solid #00203D;border-radius:8px;background:var(--navy);color:#fff;font:bold 17px var(--sans);cursor:pointer}
+  .go[disabled]{opacity:.75;cursor:progress}
+  .status{margin:12px 0 0;color:var(--err);font-weight:bold}
+  .small{margin:16px 0 0;text-align:center;font-size:14px;color:var(--muted)}
+  :focus-visible{outline:3px solid var(--red);outline-offset:2px}
+  .check{display:grid;place-items:center;width:52px;height:52px;margin:0 0 16px;border-radius:50%;background:var(--navy)}
+  .lead{margin:8px 0 0;font-size:16px}
+  h2{margin:28px 0 12px;font-size:16px;color:var(--navy)}
+  .steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  .steps li{position:relative;margin:0 0 14px;padding:0 0 0 40px;counter-increment:s}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:-2px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;
+    background:var(--tint);color:var(--navy);font-weight:bold;font-size:14px}
+  .links{margin:24px 0 0;display:flex;flex-wrap:wrap;gap:8px 24px}
+  .nb{white-space:nowrap}
+  .foot{margin:16px 0 8px;text-align:center;font-size:13px;color:var(--muted)}
+  [hidden]{display:none!important}
+  @media (min-width:640px){
+    .wrap{padding:32px 16px}
+    .mast{gap:24px;padding:20px 28px}
+    .coverbox{width:132px}
+    .logo{width:120px}
+    .jn{font-size:26px}
+    .card{padding:32px}
+    h1{font-size:32px}
+    .title{font-size:21px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .pop .check{animation:pop .3s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="mast">
+    <div class="coverbox" id="coverbox"><img class="cover" id="cover" alt="" hidden></div>
+    <div>
+      <img class="logo" src="https://www.scifiniti.com/frontend/img/logo-footer.png" alt="Scifiniti Publishing" width="120" height="34">
+      <p class="kick">Submit your preprint</p>
+      <p class="jn" id="jn">Scifiniti Publishing</p>
+    </div>
+  </header>
+
+  <section class="card" id="form-view" aria-labelledby="h">
+    <h1 id="h">Submit your preprint</h1>
+    <p class="who" id="who" hidden></p>
+    <div class="ms">
+      <p class="label">Your preprint</p>
+      <p class="title" id="title">Loading your preprint…</p>
+      <p class="authors" id="authors" hidden><span id="authors-t"></span> <button type="button" class="link" id="authors-all" hidden></button></p>
+      <p class="meta" id="meta" hidden></p>
+      <p class="plinks" id="plinks" hidden><a id="purl" href="#" target="_blank" rel="noopener">View the preprint</a><a id="ppdf" href="#" target="_blank" rel="noopener">PDF</a></p>
+    </div>
+    <details id="abs" hidden><summary>Abstract</summary><p id="abs-t"></p></details>
+    <p class="tip" id="apc" hidden></p>
+
+    <form id="f" novalidate hidden>
+      <fieldset>
+        <legend id="type-l">Article type</legend>
+        <div class="seg" role="radiogroup" aria-labelledby="type-l">
+          <label><input type="radio" name="type" value="research" checked> Research article</label>
+          <label><input type="radio" name="type" value="review"> Review</label>
+          <label><input type="radio" name="type" value="perspective"> Perspective</label>
+          <label><input type="radio" name="type" value="other"> Other</label>
+        </div>
+      </fieldset>
+
+      <fieldset id="decl">
+        <legend>Please confirm</legend>
+        <label class="opt"><input type="checkbox" id="c1"> <span>I am the corresponding author, and all co-authors agree to submit this preprint to <span class="jname">the journal</span>.</span></label>
+        <label class="opt"><input type="checkbox" id="c2"> <span>The manuscript is not under consideration at another journal.</span></label>
+        <label class="opt"><input type="checkbox" id="c3"> <span>The editorial office may prepare the submission in JAMS from <span id="vtext">this version</span> of the preprint. I will check it before peer review starts.</span></label>
+      </fieldset>
+
+      <button type="button" class="disclose" id="note-toggle" aria-expanded="false" aria-controls="note-field">Add a note for the editor</button>
+      <div class="field" id="note-field" hidden>
+        <label for="note">Note for the editor <span class="soft">(optional)</span></label>
+        <textarea id="note" rows="3" maxlength="2000"></textarea>
+      </div>
+
+      <button type="button" class="disclose" id="mail-toggle" aria-expanded="false" aria-controls="mail-field">Use another e-mail address as well</button>
+      <div class="field" id="mail-field" hidden>
+        <label for="other">Other e-mail <span class="soft">(optional)</span></label>
+        <input id="other" type="email" inputmode="email" autocomplete="email" aria-describedby="other-h">
+        <p class="hint" id="other-h">We also write to the address the invitation went to.</p>
+      </div>
+
+      <button class="go" id="go" type="submit">Yes, submit my preprint</button>
+      <p class="status" id="st" role="alert" hidden></p>
+      <p class="small">Prefer to submit it yourself? Use our submission system, <a href="https://scifiniti.jams.pub/" target="_blank" rel="noopener">JAMS</a>.</p>
+    </form>
+  </section>
+
+  <section class="card" id="done" hidden aria-labelledby="dh">
+    <div class="check" id="check" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1 id="dh" tabindex="-1">Thank you</h1>
+    <p class="lead" id="dl"></p>
+    <div class="ms" id="ms2">
+      <p class="label">Your preprint</p>
+      <p class="title" id="title2"></p>
+    </div>
+    <div id="next">
+      <h2>What happens next</h2>
+      <ol class="steps">
+        <li id="step1">The editorial office prepares your submission in JAMS from your preprint.</li>
+        <li>Within 2 working days, we e-mail you to check and confirm it. Peer review starts only after you confirm.</li>
+        <li>JAMS e-mails come from <strong class="nb">no-reply@jams.pub</strong>. Add it to your contacts so they reach your inbox.</li>
+      </ol>
+    </div>
+    <p class="links"><a id="jl" href="https://www.scifiniti.com">Visit Scifiniti Publishing</a></p>
+  </section>
+
+  <p class="foot">Scifiniti Publishing, Abu Dhabi, UAE</p>
+</main>
+<script>
+(function () {
+  // The Apps Script web app of the sheet "Preprint submissions" (Deploy > Manage deployments > Web app URL).
+  var API = 'PASTE_THE_WEB_APP_URL_HERE';
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) API = location.origin + '/api';  // local preview only
+  var SITE = /^https:\/\/www\.scifiniti\.com\//;
+  var EMAIL_RE = /^[^\s@<>"',;]+@[^\s@<>"',;]+\.[^\s@<>"',;]{2,}$/;
+  var TOKEN_RE = /^[A-Za-z0-9]{16}$/;
+  var SHOWN = 12;  // authors listed before "Show all"
+  var $ = function (id) { return document.getElementById(id); };
+  var S = { t: '', p: null };
+  var busy = false;
+
+  function param(name) { var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search); try { return m ? decodeURIComponent(m[1]) : ''; } catch (e) { return ''; } }
+  function withTimeout(ms) { var c = window.AbortController ? new AbortController() : null; if (c) setTimeout(function () { c.abort(); }, ms); return c ? c.signal : undefined; }
+  function longDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); if (!m) return iso || '';
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return Number(m[3]) + ' ' + months[Number(m[2]) - 1] + ' ' + m[1];
+  }
+
+  function fill(p) {
+    S.p = p;
+    var journal = p.journal || 'the journal';
+    $('jn').textContent = journal;
+    document.title = 'Submit your preprint | ' + journal;
+    $('h').textContent = 'Submit your preprint to ' + journal;
+    if (p.last) { $('who').textContent = 'For Dr. ' + p.last + ', corresponding author'; $('who').hidden = false; }
+    $('title').textContent = p.title || 'Your preprint';
+    var names = String(p.authors || '').split(', ').filter(String);
+    if (names.length) {
+      $('authors-t').textContent = names.length > SHOWN ? names.slice(0, SHOWN).join(', ') + ' and ' + (names.length - SHOWN) + ' more' : names.join(', ');
+      if (names.length > SHOWN) {
+        var b = $('authors-all'); b.textContent = 'Show all ' + names.length + ' authors'; b.hidden = false;
+        b.addEventListener('click', function () { $('authors-t').textContent = names.join(', '); b.hidden = true; });
+      }
+      $('authors').hidden = false;
+    }
+    var bits = [p.server, p.version ? 'version ' + p.version : '', p.posted ? 'posted ' + longDate(p.posted) : ''].filter(String);
+    if (bits.length) { $('meta').textContent = bits.join(', '); $('meta').hidden = false; }
+    if (/^https:\/\/www\.(bio|med)rxiv\.org\//.test(p.url || '')) {
+      $('purl').href = p.url; $('purl').textContent = 'View on ' + (p.server || 'the preprint server');
+      if (/\.full\.pdf$/.test(p.pdf || '')) $('ppdf').href = p.pdf; else $('ppdf').hidden = true;
+      $('plinks').hidden = false;
+    }
+    if (p.abstract) { $('abs-t').textContent = p.abstract; $('abs').hidden = false; if (window.matchMedia && matchMedia('(min-width: 640px)').matches) $('abs').open = true; }
+    if (p.apcDate) { $('apc').textContent = 'Article processing charges are waived for manuscripts submitted by ' + p.apcDate + '.'; $('apc').hidden = false; }
+    Array.prototype.forEach.call(document.querySelectorAll('.jname'), function (x) { x.textContent = journal; });
+    if (p.version) $('vtext').textContent = 'version ' + p.version;
+    if (p.emailHint) $('other-h').textContent = 'We also write to the address the invitation went to (' + p.emailHint + ').';
+    if (p.cover && /^https:\/\//.test(p.cover)) {
+      var c = $('cover'); c.alt = journal + ' cover';
+      c.onerror = function () { $('coverbox').hidden = true; }; c.src = p.cover; c.hidden = false;
+    } else { $('coverbox').hidden = true; }
+    if (p.jurl && SITE.test(p.jurl)) { $('jl').href = p.jurl; $('jl').textContent = 'Visit ' + journal; }
+    if (p.done) return done({ emailHint: p.emailHint }, p.doneOn);
+    $('f').hidden = false;
+  }
+
+  function err(text, field) {
+    var s = $('st'); s.textContent = text; s.hidden = false;
+    if (field) { field.setAttribute('aria-invalid', 'true'); var input = field.querySelector('input') || field; input.focus(); }
+  }
+  function clearErr() {
+    $('st').hidden = true;
+    Array.prototype.forEach.call(document.querySelectorAll('[aria-invalid]'), function (x) { x.removeAttribute('aria-invalid'); });
+  }
+  function idle() { busy = false; $('go').disabled = false; $('go').textContent = 'Yes, submit my preprint'; }
+
+  function send() {
+    if (busy) return;
+    clearErr();
+    var boxes = ['c1', 'c2', 'c3'].map($);
+    var open = boxes.filter(function (b) { return !b.checked; });
+    if (open.length) { open.forEach(function (b) { b.parentNode.setAttribute('aria-invalid', 'true'); }); return err('Please tick the three boxes to confirm.', open[0].parentNode); }
+    var other = $('mail-field').hidden ? '' : $('other').value.trim();
+    if (other && !EMAIL_RE.test(other)) return err('Please check the other e-mail address.', $('other'));
+    var type = document.querySelector('input[name=type]:checked');
+    var payload = { t: S.t, articleType: type ? type.value : 'research', coauthors: true, notElsewhere: true, prepare: true,
+      note: $('note-field').hidden ? '' : $('note').value.trim().slice(0, 2000), otherEmail: other };
+    busy = true; $('go').disabled = true; $('go').textContent = 'Sending…';
+    fetch(API, { method: 'POST', body: JSON.stringify(payload), credentials: 'omit', redirect: 'follow', signal: withTimeout(45000) })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (r && r.ok) return done(r, '');
+        idle(); err((r && r.error) || 'Your request was not sent. Please press the button again, or reply to the invitation e-mail.');
+      })
+      .catch(function () { idle(); err('Your request was not sent. Check your connection and press the button again, or reply to the invitation e-mail.'); });
+  }
+
+  function done(r, earlier) {
+    var p = S.p || {}, journal = p.journal || 'the journal';
+    $('dh').textContent = earlier ? 'We already have your request' : (p.last ? 'Thank you, Dr. ' + p.last : 'Thank you');
+    $('dl').textContent = earlier
+      ? 'You sent it on ' + earlier + '. The ' + journal + ' editorial office will e-mail you to confirm the submission.'
+      : 'Your request is with the ' + journal + ' editorial office.' + (r.emailHint ? ' A copy of what you confirmed is on its way to ' + r.emailHint + '.' : '');
+    $('title2').textContent = p.title || '';
+    $('ms2').hidden = !p.title;
+    if (p.version) $('step1').textContent = 'The editorial office prepares your submission in JAMS from version ' + p.version + ' of your preprint.';
+    $('form-view').hidden = true;
+    var d = $('done'); d.hidden = false; d.classList.remove('pop'); void d.offsetWidth; d.classList.add('pop');
+    window.scrollTo(0, 0); $('dh').focus();
+  }
+
+  function broken(text) {
+    $('form-view').hidden = true; $('check').hidden = true; $('ms2').hidden = true; $('next').hidden = true;
+    $('dh').textContent = 'This link is not valid';
+    $('dl').textContent = text || 'Please reply to the invitation e-mail, or submit your manuscript in JAMS at scifiniti.jams.pub.';
+    $('done').hidden = false;
+  }
+
+  function toggle(btn, box, focus) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open)); box.hidden = !open;
+      if (open) focus.focus();
+    });
+  }
+  toggle($('note-toggle'), $('note-field'), $('note'));
+  toggle($('mail-toggle'), $('mail-field'), $('other'));
+  ['c1', 'c2', 'c3'].forEach(function (id) { $(id).addEventListener('change', function () { if (this.checked) this.parentNode.removeAttribute('aria-invalid'); }); });
+  $('f').addEventListener('submit', function (e) { e.preventDefault(); send(); });
+
+  S.t = param('t');
+  if (!TOKEN_RE.test(S.t)) return broken();
+  fetch(API + '?api=preprint&t=' + encodeURIComponent(S.t), { credentials: 'omit', redirect: 'follow', signal: withTimeout(20000) })
+    .then(function (r) { return r.json(); })
+    .then(function (p) { if (p && p.ok) fill(p); else broken(); })
+    .catch(function () { broken('Your preprint could not be loaded. Please reload this page, or reply to the invitation e-mail.'); });
+})();
+</script>
+</body>
+</html>
