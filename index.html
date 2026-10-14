@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex">
-<title>Submit your preprint | Scifiniti Publishing</title>
+<title>Review your pre-filled submission | Scifiniti Publishing</title>
 <link rel="preconnect" href="https://script.google.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,13 +99,13 @@
     <div class="coverbox" id="coverbox"><img class="cover" id="cover" alt="" hidden></div>
     <div>
       <img class="logo" src="https://www.scifiniti.com/frontend/img/logo-footer.png" alt="Scifiniti Publishing" width="120" height="34">
-      <p class="kick">Submit your preprint</p>
+      <p class="kick">Pre-filled submission</p>
       <p class="jn" id="jn">Scifiniti Publishing</p>
     </div>
   </header>
 
   <section class="card" id="form-view" aria-labelledby="h">
-    <h1 id="h">Submit your preprint</h1>
+    <h1 id="h">Review your <span class="nb">pre-filled</span> submission</h1>
     <p class="who" id="who" hidden></p>
     <div class="ms">
       <p class="label">Your preprint</p>
@@ -116,6 +116,7 @@
     </div>
     <details id="abs" hidden><summary>Abstract</summary><p id="abs-t"></p></details>
     <p class="tip" id="apc" hidden></p>
+    <p class="note" id="intro" hidden>Please review the details above and confirm the three submission declarations. Following your initial confirmation, our editorial office will prepare the submission in our online submission system (JAMS) for your final review and approval before peer review begins.</p>
 
     <form id="f" novalidate hidden>
       <fieldset>
@@ -129,10 +130,10 @@
       </fieldset>
 
       <fieldset id="decl">
-        <legend>Please confirm</legend>
+        <legend>Submission declarations</legend>
         <label class="opt"><input type="checkbox" id="c1"> <span>I am the corresponding author, and all co-authors agree to submit this preprint to <span class="jname">the journal</span>.</span></label>
         <label class="opt"><input type="checkbox" id="c2"> <span>The manuscript is not under consideration at another journal.</span></label>
-        <label class="opt"><input type="checkbox" id="c3"> <span>The editorial office may prepare the submission in JAMS from <span id="vtext">this version</span> of the preprint. I will check it before peer review starts.</span></label>
+        <label class="opt"><input type="checkbox" id="c3"> <span>The editorial office may prepare the submission in JAMS from <span id="vtext">this version</span> of this preprint, for my final review and approval before peer review begins.</span></label>
       </fieldset>
 
       <button type="button" class="disclose" id="note-toggle" aria-expanded="false" aria-controls="note-field">Add a note for the editor</button>
@@ -148,7 +149,7 @@
         <p class="hint" id="other-h">We also write to the address the invitation went to.</p>
       </div>
 
-      <button class="go" id="go" type="submit">Yes, submit my preprint</button>
+      <button class="go" id="go" type="submit">Confirm declarations</button>
       <p class="status" id="st" role="alert" hidden></p>
       <p class="small">Prefer to submit it yourself? Use our submission system, <a href="https://scifiniti.jams.pub/" target="_blank" rel="noopener">JAMS</a>.</p>
     </form>
@@ -167,8 +168,8 @@
     <div id="next">
       <h2>What happens next</h2>
       <ol class="steps">
-        <li id="step1">The editorial office prepares your submission in JAMS from your preprint.</li>
-        <li>Within 2 working days, we e-mail you to check and confirm it. Peer review starts only after you confirm.</li>
+        <li id="step1">Our editorial office prepares the submission in JAMS from your preprint.</li>
+        <li>Within 2 working days, we e-mail you so you can review and approve the submission. Peer review begins only after your final approval.</li>
         <li>JAMS e-mails come from <strong class="nb">no-reply@jams.pub</strong>. Add it to your contacts so they reach your inbox.</li>
       </ol>
     </div>
@@ -202,8 +203,10 @@
     S.p = p;
     var journal = p.journal || 'the journal';
     $('jn').textContent = journal;
-    document.title = 'Submit your preprint | ' + journal;
-    $('h').textContent = 'Submit your preprint to ' + journal;
+    document.title = 'Review your pre-filled submission | ' + journal;
+    var hd = $('h'); hd.textContent = 'Review your ';
+    var nb = document.createElement('span'); nb.className = 'nb'; nb.textContent = 'pre-filled'; hd.appendChild(nb);
+    hd.appendChild(document.createTextNode(' submission to ' + journal));
     if (p.last) { $('who').textContent = 'For Dr. ' + p.last + ', corresponding author'; $('who').hidden = false; }
     $('title').textContent = p.title || 'Your preprint';
     var names = String(p.authors || '').split(', ').filter(String);
@@ -233,6 +236,7 @@
     } else { $('coverbox').hidden = true; }
     if (p.jurl && SITE.test(p.jurl)) { $('jl').href = p.jurl; $('jl').textContent = 'Visit ' + journal; }
     if (p.done) return done({ emailHint: p.emailHint }, p.doneOn);
+    $('intro').hidden = false;
     $('f').hidden = false;
   }
 
@@ -244,14 +248,14 @@
     $('st').hidden = true;
     Array.prototype.forEach.call(document.querySelectorAll('[aria-invalid]'), function (x) { x.removeAttribute('aria-invalid'); });
   }
-  function idle() { busy = false; $('go').disabled = false; $('go').textContent = 'Yes, submit my preprint'; }
+  function idle() { busy = false; $('go').disabled = false; $('go').textContent = 'Confirm declarations'; }
 
   function send() {
     if (busy) return;
     clearErr();
     var boxes = ['c1', 'c2', 'c3'].map($);
     var open = boxes.filter(function (b) { return !b.checked; });
-    if (open.length) { open.forEach(function (b) { b.parentNode.setAttribute('aria-invalid', 'true'); }); return err('Please tick the three boxes to confirm.', open[0].parentNode); }
+    if (open.length) { open.forEach(function (b) { b.parentNode.setAttribute('aria-invalid', 'true'); }); return err('Please confirm the three submission declarations.', open[0].parentNode); }
     var other = $('mail-field').hidden ? '' : $('other').value.trim();
     if (other && !EMAIL_RE.test(other)) return err('Please check the other e-mail address.', $('other'));
     var type = document.querySelector('input[name=type]:checked');
@@ -262,20 +266,20 @@
       .then(function (r) { return r.json(); })
       .then(function (r) {
         if (r && r.ok) return done(r, '');
-        idle(); err((r && r.error) || 'Your request was not sent. Please press the button again, or reply to the invitation e-mail.');
+        idle(); err((r && r.error) || 'Your confirmation was not sent. Please press the button again, or reply to the invitation e-mail.');
       })
-      .catch(function () { idle(); err('Your request was not sent. Check your connection and press the button again, or reply to the invitation e-mail.'); });
+      .catch(function () { idle(); err('Your confirmation was not sent. Check your connection and press the button again, or reply to the invitation e-mail.'); });
   }
 
   function done(r, earlier) {
     var p = S.p || {}, journal = p.journal || 'the journal';
-    $('dh').textContent = earlier ? 'We already have your request' : (p.last ? 'Thank you, Dr. ' + p.last : 'Thank you');
+    $('dh').textContent = earlier ? 'We already have your confirmation' : (p.last ? 'Thank you, Dr. ' + p.last : 'Thank you');
     $('dl').textContent = earlier
-      ? 'You sent it on ' + earlier + '. The ' + journal + ' editorial office will e-mail you to confirm the submission.'
-      : 'Your request is with the ' + journal + ' editorial office.' + (r.emailHint ? ' A copy of what you confirmed is on its way to ' + r.emailHint + '.' : '');
+      ? 'You sent it on ' + earlier + '. The ' + journal + ' editorial office will e-mail you for your final review and approval.'
+      : 'Your confirmation is with the ' + journal + ' editorial office.' + (r.emailHint ? ' A copy of the declarations you confirmed is on its way to ' + r.emailHint + '.' : '');
     $('title2').textContent = p.title || '';
     $('ms2').hidden = !p.title;
-    if (p.version) $('step1').textContent = 'The editorial office prepares your submission in JAMS from version ' + p.version + ' of your preprint.';
+    if (p.version) $('step1').textContent = 'Our editorial office prepares the submission in JAMS from version ' + p.version + ' of your preprint.';
     $('form-view').hidden = true;
     var d = $('done'); d.hidden = false; d.classList.remove('pop'); void d.offsetWidth; d.classList.add('pop');
     window.scrollTo(0, 0); $('dh').focus();
